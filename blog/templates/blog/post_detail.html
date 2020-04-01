@@ -8,9 +8,13 @@
 
     <title>Lili Blog</title>
 </head>
+
+<div class="page-header">
+    <h1><a href="/">Lili Blog</a></h1>
+</div>
+
+
 <div class="post">
-
-
     <h2>{{ post.title }}</h2>
     <p>{{ post.text|linebreaksbr }}</p>
     {% if user.is_authenticated %}
@@ -22,4 +26,20 @@
     {% else %}
     <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publier</a> {% endif %}
 </div>
-{% endblock %}
+
+
+<!-- Rend les commentaires visibles sur les pages avec les détails du message -->
+<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Ajouter un commentaire</a>
+<hr> {% for comment in post.comments.all %} {% if user.is_authenticated or comment.approved_comment %}
+<div class="comment">
+    <div class="date">
+        {{ comment.created_date }} {% if not comment.approved_comment %}
+        <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a> {% endif %}
+    </div>
+    <strong>{{ comment.author }}</strong>
+    <p>{{ comment.text|linebreaks }}</p>
+</div>
+{% endif %} {% empty %}
+<p>Aucun commentaire posté</p>
+{% endfor %} {% endblock %}
