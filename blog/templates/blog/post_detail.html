@@ -1,0 +1,25 @@
+{% load static %} {% block content %}
+
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <title>Lili Blog</title>
+</head>
+<div class="post">
+
+
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.text|linebreaksbr }}</p>
+    {% if user.is_authenticated %}
+    <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Modifier</a>
+    <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}">Supprimer</a> {% endif %}{% if post.published_date %}
+    <div class="date">
+        {{ post.published_date }}
+    </div>
+    {% else %}
+    <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publier</a> {% endif %}
+</div>
+{% endblock %}
