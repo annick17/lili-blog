@@ -34,7 +34,7 @@ body {
 }
 
 .content {
-    margin-left: 40px;
+    margin-left: 24%;
 }
 
 h1,
@@ -68,9 +68,19 @@ h4 {
 }
 
 .post {
-    margin-bottom: 70px;
-    width: 50%;
-    margin-left: 25%;
+    margin-bottom: 50px;
+    width: 75%;
+    margin-top: 10%;
+}
+
+.livre {
+    margin-right: 4%;
+    margin-top: 2%;
+}
+
+.texte {
+    padding: 0;
+    margin-top: 2%;
 }
 
 h2 {
@@ -106,4 +116,16 @@ h2 {
 
 .comment {
     margin: 20px 0px 20px 20px;
+}
+
+.container {
+    width: 100%;
+}
+
+.comm {
+    margin-top: 10%
+}
+
+.block {
+    border-bottom: 1px dotted black;
 }
